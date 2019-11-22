@@ -1,0 +1,13 @@
+version: '2'
+services:
+    create-tr-index:
+        build: .
+        volumes:
+            - "fileshare:/mnt/fileshare"
+volumes:
+    fileshare:
+        driver: local
+        driver_opts:
+            type: cifs
+            device: "//${FILESHARE_IP_ADDRESS}/${FILESHARE_INPUT_FOLDER}"
+            o: "username=${FILESHARE_USERNAME},password=${FILESHARE_PASSWORD},vers=3.0"
